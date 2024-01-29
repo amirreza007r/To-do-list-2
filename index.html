@@ -1,0 +1,89 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Import Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="./assets/vendor/bootstrap-rtl/bootstrap.rtl.min.css">
+
+    <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/master.css">
+
+    <title>To-do List</title>
+</head>
+
+<body>
+
+    <div class="page">
+        <div class="container mt-5">
+            <div class="container1 d-flex justify-content-center align-items-center">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        class="bi bi-calendar-check" viewBox="0 0 16 16">
+                        <path
+                            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                        <path
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                    </svg> To-do List
+                </h2>
+            </div>
+            <div class="flex1 d-flex justify-content-between">
+                <div class="container2">
+                    <div class="filter-section gap-2 d-flex flex-column side-bar">
+                        <button id="allBtn" class="active" onclick="filterTasks('all')">All</button>
+                        <button id="ongoingBtn" onclick="filterTasks('ongoing')">Pending</button>
+                        <button id="inactiveTaskBtn" onclick="filterTasks('inactiveTask')">inactive</button>
+                        <button id="activeTaskBtn" onclick="filterTasks('activeTask')">Active</button>
+                        <button id="completedBtn" onclick="filterTasks('completed')">Completed</button>
+                    </div>
+                </div>
+                <div class="container3">
+                    <div class="top-sec d-flex justify-content-around">
+                        <div class="fs-5 d-flex align-items-center">To do list</div>
+                        <button id="add-task-window">Add Task</button>
+                        <div id="popup">
+                            <div class="popup-content">
+                                <div class="input-section">
+                                    <div class="d-flex align-items-center flex-column w-75">
+                                        <h3>Enter task</h3>
+                                        <input type="text" id="input" oninput="handleInputChange()"
+                                            onkeypress="handleKeyPress(event)" placeholder="Type here...">
+                                    </div>
+                                    <div class="d-flex align-items-center flex-column w-75">
+                                        <h3>Start date</h3>
+                                        <input type="date" id="startDateInput" placeholder="Start Date">
+                                    </div>
+                                    <div class="d-flex align-items-center flex-column w-75">
+                                        <h3>End date</h3>
+                                        <input type="date" id="endDateInput" placeholder="End Date">
+                                    </div>
+                                    <div class="d-flex align-items-center  mt-3 w-75">
+                                        <button id="add-btn" type="button" onclick="addTask()">Add</button>
+                                        <button id="closePopup" type="button">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="bottom-sec">
+                        <ul id="list-container">
+                            <li class="checked">task 1</li>
+                            <li>task 2</li>
+                            <li>task 3</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Import JavaScript -->
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

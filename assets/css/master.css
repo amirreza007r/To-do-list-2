@@ -1,0 +1,236 @@
+/* master.css */
+
+.page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    /* background: rgb(2, 0, 36);
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 79%
+    ); */
+    /*
+
+*/
+    background: #242319;
+    background: linear-gradient(135deg, #242319, #0e80a0);
+}
+
+.main-container {
+    margin: 25px auto 20px;
+    width: 70%;
+}
+
+.container1 {
+    width: 100%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+}
+.container2 {
+    width: 25%;
+
+    background-color: white;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.container3 {
+    width: 73%;
+    padding: 40px 30px 70px;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.container1 h2 {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.container1 h2 svg {
+    margin-right: 10px;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    /* padding-left: 20px; */
+    padding: 24px;
+    background-color: #ccc;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filter-section button.active {
+    background-color: #4caf50;
+    color: white;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    /* background: transparent; */
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+}
+
+button#add-btn {
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    background-color: #19875472;
+    padding: 16px 50px;
+    color: white;
+}
+button#add-btn.active {
+    background-color: #198754;
+    color: white;
+}
+
+button#closePopup {
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    background-color: #ff0000c2;
+    padding: 16px 50px;
+    color: white;
+}
+
+button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #ccc;
+    padding: 0.6rem;
+    color: black;
+}
+
+ul li {
+    list-style: none;
+    font-size: 1.5rem;
+    padding: 12px 12px 20px;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #777;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    position: absolute;
+    right: 80px;
+    top: 12px;
+    height: 40px;
+    line-height: 5px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li::before {
+    content: "";
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(../images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 19px;
+    left: -25px;
+}
+
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-image: url(../images/checked.png);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    color: #555;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover {
+    background-color: #edeef0;
+}
+
+#list-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.action-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button#clearAllBtn {
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    background-color: #ff5945;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+}
+
+button#add-task-window {
+    border: none;
+    outline: none;
+    padding: 0.7rem 1.5rem;
+}
+
+#popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+.popup-content {
+    /* background-color: white; */
+    margin: 10% auto;
+    padding: 20px;
+    width: 70%;
+    font-weight: bolder;
+}
+.popup-content button {
+    display: block;
+    margin: 0 auto;
+}
+.show {
+    display: block !important;
+}
+
+@media only screen and (max-width: 900px) {
+    .main-container {
+        margin: 25px auto 20px;
+        width: 85%;
+    }
+}
