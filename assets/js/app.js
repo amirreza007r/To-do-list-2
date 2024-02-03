@@ -59,7 +59,15 @@ function addTask() {
         const endDate = new Date(endDateInput.value);
 
         let li = document.createElement("li");
-        li.innerHTML = `${inputBox.value}  <div class="timestamp"><p>Start: ${startDateInput.value}</p><p> End: ${endDateInput.value}</p></div>`;
+        li.innerHTML = `${inputBox.value} <p class="badge">${getTaskBadge(
+            startDate,
+            endDate
+        )}</p> 
+        <div class="timestamp">
+            <p>Start: ${startDateInput.value}</p>
+            <p>End: ${endDateInput.value}</p>
+        </div>
+        `;
         listContainer.appendChild(li);
 
         if (currentTime >= startDate && currentTime <= endDate) {
@@ -79,6 +87,19 @@ function addTask() {
     startDateInput.value = "";
     document.getElementById("add-btn").classList.remove("active");
     saveData();
+}
+
+// Function to determine the task badge based on start and end dates
+function getTaskBadge(startDate, endDate) {
+    const currentTime = new Date();
+
+    if (currentTime >= startDate && currentTime <= endDate) {
+        return "Active";
+    } else if (currentTime < startDate) {
+        return "Upcoming";
+    } else {
+        return "Expired";
+    }
 }
 
 /**
