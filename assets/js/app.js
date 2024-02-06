@@ -57,17 +57,16 @@ function addTask() {
         const timestamp = `${currentTime.toLocaleDateString()}`;
         const startDate = new Date(startDateInput.value);
         const endDate = new Date(endDateInput.value);
+        const { badge, taskClass } = getTaskBadgeAndClass(startDate, endDate);
 
         let li = document.createElement("li");
-        li.innerHTML = `${inputBox.value} <p class="badge">${getTaskBadge(
-            startDate,
-            endDate
-        )}</p> 
+        li.innerHTML = `${inputBox.value} <p class="badge">${badge}</p> 
         <div class="timestamp">
             <p>Start: ${startDateInput.value}</p>
             <p>End: ${endDateInput.value}</p>
         </div>
         `;
+        li.classList.add(taskClass);
         listContainer.appendChild(li);
 
         if (currentTime >= startDate && currentTime <= endDate) {
@@ -95,16 +94,22 @@ function addTask() {
  * @param {Date} endDate - The end date of the task
  * @returns {string} - The task badge: "Active", "Upcoming", or "Expired"
  */
-function getTaskBadge(startDate, endDate) {
+function getTaskBadgeAndClass(startDate, endDate) {
     const currentTime = new Date();
+    let badge = "";
+    let taskClass = "";
 
     if (currentTime >= startDate && currentTime <= endDate) {
-        return "Active";
+        badge = "Active";
+        taskClass = "active-task";
     } else if (currentTime < startDate) {
-        return "Upcoming";
+        badge = "Upcoming";
+        taskClass = "upcoming-task";
     } else {
-        return "Expired";
+        badge = "Expired";
+        taskClass = "expired-task";
     }
+    return { badge, taskClass };
 }
 
 /**

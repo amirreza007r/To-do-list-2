@@ -224,15 +224,15 @@ button#add-task-window {
     border-radius: 20px;
     font-size: 0.7rem;
 }
-.badge.active {
+.active-task .badge {
     background-color: #28a745;
 }
 
-.badge.upcoming {
-    background-color: #ffc107;
+.upcoming-task .badge {
+    background-color: #dda600;
 }
 
-.badge.expired {
+.expired-task .badge {
     background-color: #dc3545;
 }
 @media only screen and (max-width: 900px) {
