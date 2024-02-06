@@ -89,7 +89,12 @@ function addTask() {
     saveData();
 }
 
-// Function to determine the task badge based on start and end dates
+/**
+ * Determine the task badge based on start and end dates
+ * @param {Date} startDate - The start date of the task
+ * @param {Date} endDate - The end date of the task
+ * @returns {string} - The task badge: "Active", "Upcoming", or "Expired"
+ */
 function getTaskBadge(startDate, endDate) {
     const currentTime = new Date();
 
@@ -120,6 +125,21 @@ listContainer.addEventListener("click", function (e) {
     } else if (e.target.tagName === "SPAN") {
         e.target.parentElement.remove();
         saveData();
+    }
+});
+// Update task badge text
+listContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "LI") {
+        if (e.target.classList.contains("checked")) {
+            localStorage.setItem(
+                "badge",
+                e.target.querySelector(".badge").innerText
+            );
+            e.target.querySelector(".badge").innerText = "Completed";
+        } else {
+            e.target.querySelector(".badge").innerText =
+                localStorage.getItem("badge");
+        }
     }
 });
 
