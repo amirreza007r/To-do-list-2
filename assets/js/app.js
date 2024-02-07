@@ -5,6 +5,10 @@ const endDateInput = document.getElementById("endDateInput");
 const startDateInput = document.getElementById("startDateInput");
 const myButton = document.getElementById("add-task-window");
 const myPopup = document.getElementById("popup");
+const errorText = document.getElementById("text-input-error");
+const sDateError = document.getElementById("startdate-input-error");
+const eDateError = document.getElementById("enddate-input-error");
+const closeCross = document.getElementById("close-cross");
 
 /**
  * Handles the input change event by updating the state of the add button based on the input text length.
@@ -20,6 +24,7 @@ function handleInputChange() {
     } else {
         addBtn.classList.remove("active");
     }
+    clearInputErrors();
 }
 
 // Event listener for displaying the popup
@@ -32,6 +37,10 @@ closePopup.addEventListener("click", function () {
     myPopup.classList.remove("show");
 });
 
+closeCross.addEventListener("click", function () {
+    myPopup.classList.remove("show");
+});
+
 // Event listener to close the popup when clicking outside it
 window.addEventListener("click", function (event) {
     if (event.target == myPopup) {
@@ -41,17 +50,21 @@ window.addEventListener("click", function (event) {
 
 /**
  * Adds a task to the list with start and end dates.
- * @Author: flydreame
+ * @Author: amirreza
  * @Date: 2024-01-29 11:04:06
  * @Desc: Validates input and adds a task with timestamps and optional styling based on the current time.
  */
 function addTask() {
-    if (
-        inputBox.value === "" ||
-        endDateInput.value === "" ||
-        startDateInput.value === ""
-    ) {
-        alert("Fill all the boxes");
+    clearInputErrors();
+    if (inputBox.value === "") {
+        errorText.innerHTML = "Please enter a task";
+    }
+    if (startDateInput.value === "") {
+        sDateError.innerHTML = "Please enter start date";
+    }
+    if (endDateInput.value === "") {
+        eDateError.innerHTML = "Please enter end date";
+        return;
     } else {
         const currentTime = new Date();
         const timestamp = `${currentTime.toLocaleDateString()}`;
@@ -135,15 +148,23 @@ listContainer.addEventListener("click", function (e) {
 // Update task badge text
 listContainer.addEventListener("click", function (e) {
     if (e.target.tagName === "LI") {
+        const badgeElement = e.target.querySelector(".badge");
+
         if (e.target.classList.contains("checked")) {
-            localStorage.setItem(
-                "badge",
-                e.target.querySelector(".badge").innerText
+            e.target.setAttribute(
+                "data-original-badge",
+                badgeElement.innerText
             );
-            e.target.querySelector(".badge").innerText = "Completed";
+
+            localStorage.setItem("badge", "Completed");
+            badgeElement.innerText = "Completed";
+            e.target.classList.add("completed-task");
+            saveData();
         } else {
-            e.target.querySelector(".badge").innerText =
-                localStorage.getItem("badge");
+            e.target.classList.remove("completed-task");
+            const originalBadge = e.target.getAttribute("data-original-badge");
+            badgeElement.innerText = originalBadge || "";
+            saveData();
         }
     }
 });
@@ -217,4 +238,13 @@ function filterTasks(filter) {
 
     // Add the active class to the clicked button
     document.getElementById(`${filter}Btn`).classList.add("active");
+}
+
+/**
+ * Clears input error messages.
+ */
+function clearInputErrors() {
+    errorText.innerHTML = "";
+    sDateError.innerHTML = "";
+    eDateError.innerHTML = "";
 }

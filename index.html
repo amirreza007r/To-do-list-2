@@ -32,8 +32,8 @@
                 </h2>
             </div>
             <div class="flex1  d-sm-flex justify-content-between">
-                <div class="container2">
-                    <div class="filter-section gap-2 d-flex flex-column  side-bar">
+                <div class="container2 d-flex justify-content-center">
+                    <div class="filter-section gap-3 d-flex flex-column  side-bar">
                         <button id="allBtn" class="active" onclick="filterTasks('all')">All</button>
                         <button id="ongoingBtn" onclick="filterTasks('ongoing')">Pending</button>
                         <button id="inactiveTaskBtn" onclick="filterTasks('inactiveTask')">inactive</button>
@@ -43,26 +43,34 @@
                 </div>
                 <div class="container3">
                     <div class="top-sec d-flex justify-content-between">
-                        <div class="fs-5 d-flex fw-bold align-items-center">To do list</div>
+                        <div class="tasks-text d-flex fw-bold align-items-center">Tasks</div>
                         <button id="add-task-window">Add Task</button>
                         <div id="popup">
                             <div class="popup-content">
+
                                 <div class="input-section">
-                                    <div class="d-flex align-items-center flex-column w-75">
+                                    <span id="close-cross">×</span>
+                                    <div
+                                        class="d-flex position-relative text-input align-items-center flex-column w-75">
                                         <h3>Enter task</h3>
                                         <input type="text" id="input" oninput="handleInputChange()"
                                             onkeypress="handleKeyPress(event)" placeholder="Type here...">
+                                        <span id="text-input-error" class="error"></span>
                                     </div>
-                                    <div class="d-flex align-items-center flex-column w-75">
+                                    <div
+                                        class="d-flex position-relative align-items-center sdate-input flex-column w-75">
                                         <h3>Start date</h3>
                                         <input type="date" id="startDateInput" placeholder="Start Date">
+                                        <span id="startdate-input-error" class="error"></span>
                                     </div>
-                                    <div class="d-flex align-items-center flex-column w-75">
+                                    <div
+                                        class="d-flex position-relative align-items-center edate-input flex-column w-75">
                                         <h3>End date</h3>
                                         <input type="date" id="endDateInput" placeholder="End Date">
+                                        <span id="enddate-input-error" class="error"></span>
                                     </div>
                                     <div class="d-flex align-items-center b-container mt-3 w-75">
-                                        <button id="closePopup" type="button">Close</button>
+                                        <button id="closePopup" type="button">Cancel</button>
                                         <button id="add-btn" type="button" onclick="addTask()">Add</button>
                                     </div>
                                 </div>
