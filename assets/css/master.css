@@ -108,8 +108,10 @@ button#add-btn {
     outline: none;
     border-radius: 40px;
     background-color: #19875472;
-    padding: 16px 50px;
+    /* padding: 16px 50px; */
     color: white;
+    width: 130px;
+    height: 60px;
 }
 button#add-btn.active {
     background-color: #198754;
@@ -125,8 +127,10 @@ button#closePopup {
     outline: none;
     border-radius: 40px;
     background-color: #ff0000c2;
-    padding: 16px 44px;
+    /* padding: 16px 44px; */
     color: white;
+    width: 130px;
+    height: 60px;
 }
 
 button#closePopup:hover {
@@ -182,6 +186,7 @@ ul li::before {
 ul li.checked {
     color: #555;
     text-decoration: line-through;
+    font-style: italic;
 }
 
 ul li.checked::before {
@@ -322,7 +327,6 @@ button#add-task-window:hover {
         outline: none;
         border-radius: 40px;
         background-color: #19875472;
-        padding: 20px 49px;
         color: white;
     }
     button#closePopup {
@@ -330,7 +334,6 @@ button#add-task-window:hover {
         outline: none;
         border-radius: 40px;
         background-color: #ff0000c2;
-        padding: 20px 44px;
         color: white;
     }
     .input-section div h3 {
