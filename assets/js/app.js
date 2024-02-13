@@ -9,7 +9,8 @@ const errorText = document.getElementById("text-input-error");
 const sDateError = document.getElementById("startdate-input-error");
 const eDateError = document.getElementById("enddate-input-error");
 const closeCross = document.getElementById("close-cross");
-
+// const startDate = new Date(startDateInput.value);
+// const endDate = new Date(endDateInput.value);
 /**
  * Handles the input change event by updating the state of the add button based on the input text length.
  * @Author: amir
@@ -56,42 +57,53 @@ window.addEventListener("click", function (event) {
  */
 function addTask() {
     clearInputErrors();
-    if (inputBox.value === "") {
+    const inputText = inputBox.value.trim();
+    const startDateValue = startDateInput.value.trim();
+    const endDateValue = endDateInput.value.trim();
+
+    if (inputText === "") {
         errorText.innerHTML = "Please enter a task";
     }
-    if (startDateInput.value === "") {
+
+    if (startDateValue === "") {
         sDateError.innerHTML = "Please enter start date";
     }
-    if (endDateInput.value === "") {
+
+    if (endDateValue === "") {
         eDateError.innerHTML = "Please enter end date";
         return;
-    } else {
-        const currentTime = new Date();
-        const timestamp = `${currentTime.toLocaleDateString()}`;
-        const startDate = new Date(startDateInput.value);
-        const endDate = new Date(endDateInput.value);
-        const { badge, taskClass } = getTaskBadgeAndClass(startDate, endDate);
-
-        let li = document.createElement("li");
-        li.innerHTML = `${inputBox.value} <p class="badge">${badge}</p> 
-        <div class="timestamp">
-            <p>Start: ${startDateInput.value}</p>
-            <p>End: ${endDateInput.value}</p>
-        </div>
-        `;
-        li.classList.add(taskClass);
-        listContainer.appendChild(li);
-
-        if (currentTime >= startDate && currentTime <= endDate) {
-            li.classList.add("active-task");
-        } else if (currentTime < startDate || currentTime > endDate) {
-            li.classList.add("inactive-task");
-        }
-
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
     }
+
+    const startDate = new Date(startDateValue);
+    const endDate = new Date(endDateValue);
+
+    if (endDate < startDate) {
+        eDateError.innerHTML = "End date cannot be before start date";
+        return;
+    }
+
+    const currentTime = new Date();
+    const timestamp = `${currentTime.toLocaleDateString()}`;
+    const { badge, taskClass } = getTaskBadgeAndClass(startDate, endDate);
+
+    let li = document.createElement("li");
+    li.innerHTML = `${inputText} <p class="badge">${badge}</p> 
+        <div class="timestamp">
+            <p>Start: ${startDateValue}</p>
+            <p>End: ${endDateValue}</p>
+        </div>
+    `;
+    li.classList.add(taskClass);
+    listContainer.appendChild(li);
+
+    if (currentTime >= startDate && currentTime <= endDate) {
+        li.classList.add("active-task");
+    } else if (currentTime < startDate || currentTime > endDate) {
+        li.classList.add("inactive-task");
+    }
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
 
     // Clear input values and reset button state
     inputBox.value = "";

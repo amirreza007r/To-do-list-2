@@ -104,17 +104,19 @@ input {
 }
 
 button#add-btn {
+    border: solid 1.5px #19875472;
     border: none;
     outline: none;
-    border-radius: 40px;
+    border-radius: 10px;
     background-color: #19875472;
     /* padding: 16px 50px; */
     color: white;
-    width: 130px;
+    width: 43%;
     height: 60px;
 }
 button#add-btn.active {
     background-color: #198754;
+    border: solid 1px #198754;
     color: white;
 }
 
@@ -123,18 +125,20 @@ button#add-btn.active:hover {
 }
 
 button#closePopup {
-    border: none;
+    border: 1.5px solid #ff0000c2;
     outline: none;
-    border-radius: 40px;
-    background-color: #ff0000c2;
+    border-radius: 10px;
+    background-color: transparent;
     /* padding: 16px 44px; */
-    color: white;
-    width: 130px;
+    color: #ff0000c2;
+    width: 43%;
     height: 60px;
+    font-weight: bold;
 }
 
 button#closePopup:hover {
-    background-color: #ff00007a;
+    background-color: #ff000030;
+    border: 1.5px solid #ff000030;
 }
 
 button {
@@ -186,7 +190,7 @@ ul li::before {
 ul li.checked {
     color: #555;
     text-decoration: line-through;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 ul li.checked::before {
@@ -260,7 +264,7 @@ button#add-task-window:hover {
 }
 .popup-content button {
     display: block;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 #close-cross {
@@ -322,20 +326,7 @@ button#add-task-window:hover {
     .container-sm {
         max-width: 90% !important;
     }
-    button#add-btn {
-        border: none;
-        outline: none;
-        border-radius: 40px;
-        background-color: #19875472;
-        color: white;
-    }
-    button#closePopup {
-        border: none;
-        outline: none;
-        border-radius: 40px;
-        background-color: #ff0000c2;
-        color: white;
-    }
+
     .input-section div h3 {
         align-self: baseline;
         margin-left: 1rem;
@@ -354,11 +345,43 @@ button#add-task-window:hover {
         margin-left: 1.5rem;
     }
 }
-@media only screen and (max-width: 570px) {
+@media only screen and (min-width: 800px) {
+    .flex1 {
+        display: flex;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .flex1 {
+        display: block;
+    }
     .popup-content {
         width: 100%;
         padding: 0;
     }
+
+    ul li {
+        font-size: 1.2rem;
+    }
+
+    .input-section div h3 {
+        align-self: baseline;
+        margin-left: 1rem;
+    }
+    .input-section {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        margin-bottom: 0;
+        border-radius: 30px 30px 0 0;
+    }
+
+    button#add-btn {
+        width: 90%;
+    }
+    button#closePopup {
+        width: 90%;
+    }
+
     .container2 {
         width: 100%;
     }
@@ -371,10 +394,18 @@ button#add-task-window:hover {
         border-radius: 10px;
     }
 
+    ol,
+    ul {
+        padding-right: 1rem;
+    }
+
     .timestamp {
         position: relative;
         top: 0;
         right: 16px;
+    }
+    .timestamp p {
+        align-self: baseline;
     }
     .container1 h2 {
         font-size: 2.1rem;
