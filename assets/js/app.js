@@ -1,5 +1,6 @@
 // Get references to HTML elements
 const inputBox = document.getElementById("input");
+const inputSection = document.getElementsByClassName("input-section")[0];
 const listContainer = document.getElementById("list-container");
 const endDateInput = document.getElementById("endDateInput");
 const startDateInput = document.getElementById("startDateInput");
@@ -61,16 +62,16 @@ function addTask() {
     const startDateValue = startDateInput.value.trim();
     const endDateValue = endDateInput.value.trim();
 
-    if (inputText === "") {
-        errorText.innerHTML = "Please enter a task";
-    }
-
-    if (startDateValue === "") {
-        sDateError.innerHTML = "Please enter start date";
-    }
-
-    if (endDateValue === "") {
-        eDateError.innerHTML = "Please enter end date";
+    if (inputText === "" || startDateValue === "" || endDateValue === "") {
+        if (inputText === "") {
+            errorText.innerHTML = "Please enter a task";
+        }
+        if (startDateValue === "") {
+            sDateError.innerHTML = "Please enter start date";
+        }
+        if (endDateValue === "") {
+            eDateError.innerHTML = "Please enter end date";
+        }
         return;
     }
 
@@ -105,7 +106,7 @@ function addTask() {
     span.innerHTML = "\u00d7";
     li.appendChild(span);
 
-    // Clear input values and reset button state
+    // Clear inputs values and reset button state
     inputBox.value = "";
     endDateInput.value = "";
     startDateInput.value = "";
